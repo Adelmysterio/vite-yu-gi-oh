@@ -35,15 +35,17 @@ export default {
 
 <style scoped>
 main {
-    background-color: orangered;
+    background-color: orange;
     padding: 5rem 0;
 }
 
 div {
     margin: 0 auto;
+    padding: 2rem;
     max-width: 1200px;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 </style>
