@@ -1,28 +1,26 @@
 <script>
 import Cards from './Cards.vue';
-import { store } from '../store.js'
+import { store } from '../store.js';
 import axios from 'axios';
-
-axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-    .then((response) => {
-        console.log(response.data);
-        response.data = this.store.cards
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
-    .finally(function () {
-    });
 
 export default {
     components: {
         Cards
     },
-
     data() {
         return {
             store,
-        }
+        };
+    },
+    created() {
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+            .then((response) => {
+                console.log(response.data.data);
+                this.store.cards = response.data.data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
 </script>
@@ -38,5 +36,14 @@ export default {
 <style scoped>
 main {
     background-color: orangered;
+    padding: 5rem 0;
+}
+
+div {
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>

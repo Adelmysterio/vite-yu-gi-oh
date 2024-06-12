@@ -10,8 +10,9 @@ export default {
 </script>
 
 <template>
-    <article v-for="item in cards">
-        <img src="" alt="">
+    <article v-for="(item, index) in store.cards" :key="index">
+        <img :src="item.card_images[0].image_url" :alt="item.name">
+        <p>{{ item.name }}</p>
     </article>
 </template>
 
