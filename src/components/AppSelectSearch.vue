@@ -12,7 +12,7 @@ export default {
 
 <template>
     <select  id="select-archetype">
-        <option v-for="(item, index) in store.archetypes" :key="index" value="item">{{ item.archetype_name }}</option>
+        <option v-for="(item, index) in store.archetypes" :key="index" value="item.archetype_name">{{ item.archetype_name }}</option>
     </select>
 </template>
 
