@@ -1,6 +1,7 @@
 <script>
 import Cards from './Cards.vue';
 import Loader from './Loader.vue';
+import Counter from './Counter.vue';
 import AppSelectSearch from './AppSelectSearch.vue'
 import { store } from '../store.js';
 import axios from 'axios';
@@ -9,7 +10,8 @@ export default {
     components: {
         Cards,
         Loader,
-        AppSelectSearch
+        AppSelectSearch,
+        Counter
     },
     data() {
         return {
@@ -80,6 +82,7 @@ export default {
     <main>
         <div class="container">
             <AppSelectSearch @cardArchetype="filterCards" />
+            <Counter />
             <div>
                 <Cards v-if="isLoaded" />
                 <Loader v-else />
