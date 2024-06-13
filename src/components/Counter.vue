@@ -16,4 +16,13 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+div {
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+</style>

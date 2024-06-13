@@ -22,5 +22,6 @@ export default {
 select {
     padding: .5rem;
     font-size: 1rem;
+    margin-bottom: 1rem;
 }
 </style>

@@ -83,16 +83,18 @@ export default {
         <div class="container">
             <AppSelectSearch @cardArchetype="filterCards" />
             <Counter />
-            <div>
-                <Cards v-if="isLoaded" />
-                <Loader v-else />
-            </div>
+            <section>
+                <div>
+                    <Cards v-if="isLoaded" />
+                    <Loader v-else />
+                </div>
+            </section>
         </div>
     </main>
 </template>
 
-<style scoped>
-.container {
+<style lang="scss" scoped>
+div.container {
     margin: 0 auto;
     max-width: 1200px;
 }
@@ -102,11 +104,14 @@ main {
     padding: 5rem 0;
 }
 
-div {
+section {
     padding: 2rem;
     background-color: white;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 }
 </style>
