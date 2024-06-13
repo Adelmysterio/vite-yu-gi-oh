@@ -1,13 +1,15 @@
 <script>
 import Cards from './Cards.vue';
+import Loader from './Loader.vue';
+import AppSelectSearch from './AppSelectSearch.vue'
 import { store } from '../store.js';
 import axios from 'axios';
-import Loader from './Loader.vue'
 
 export default {
     components: {
         Cards,
-        Loader
+        Loader,
+        AppSelectSearch
     },
     data() {
         return {
@@ -15,8 +17,10 @@ export default {
             isLoaded: false
         };
     },
-    created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+
+    methods: {
+        getCards: function(){
+            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=100&offset=0')
             .then((response) => {
                 console.log(response.data.data);
                 this.store.cards = response.data.data;
@@ -25,14 +29,34 @@ export default {
             .catch((error) => {
                 console.error(error);
             });
+        },
+
+        getArchetypes: function () {
+            axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+            .then((response) => {
+                console.log(response.data);
+                this.store.archetypes = response.data;
+                this.isLoaded = true
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }
+
+
+    },
+    created() {
+     this.getCards(),
+     this.getArchetypes()
     }
 }
 </script>
 
 <template>
     <main>
+        <AppSelectSearch />
         <div>
-            <Cards v-if="isLoaded"/>
+            <Cards v-if="isLoaded" />
             <Loader v-else />
         </div>
     </main>
