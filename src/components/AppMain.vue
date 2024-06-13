@@ -2,14 +2,17 @@
 import Cards from './Cards.vue';
 import { store } from '../store.js';
 import axios from 'axios';
+import Loader from './Loader.vue'
 
 export default {
     components: {
-        Cards
+        Cards,
+        Loader
     },
     data() {
         return {
             store,
+            isLoaded: false
         };
     },
     created() {
@@ -17,6 +20,7 @@ export default {
             .then((response) => {
                 console.log(response.data.data);
                 this.store.cards = response.data.data;
+                this.isLoaded = true
             })
             .catch((error) => {
                 console.error(error);
@@ -28,7 +32,8 @@ export default {
 <template>
     <main>
         <div>
-            <Cards />
+            <Cards v-if="isLoaded"/>
+            <Loader v-else />
         </div>
     </main>
 </template>
